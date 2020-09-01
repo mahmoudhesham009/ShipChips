@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "923396600956",
+    "firebase_url": "https://ecommerce-19b2e.firebaseio.com",
+    "project_id": "ecommerce-19b2e",
+    "storage_bucket": "ecommerce-19b2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923396600956:android:efe84513c2d6f2dacd05f9",
+        "android_client_info": {
+          "package_name": "com.example.menmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923396600956-cfkot88rc80f402tskkph293bojntht9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVWvK89HRN9egEk1X32xtGkCwsg2mvJuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923396600956-cfkot88rc80f402tskkph293bojntht9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
