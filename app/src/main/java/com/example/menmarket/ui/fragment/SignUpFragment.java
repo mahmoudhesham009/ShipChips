@@ -70,7 +70,8 @@ public class SignUpFragment extends BaseFragment {
                             } else {
                                 User user = new User(name.getText().toString(), pass.getText().toString());
                                 database.child(phone.getText().toString()).setValue(user);
-                                Toast.makeText(getActivity(), "Ready to Log In", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Ready to LogIn", Toast.LENGTH_SHORT).show();
+
 
                             }
                         }
