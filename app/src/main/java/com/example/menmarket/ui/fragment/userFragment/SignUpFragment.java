@@ -1,4 +1,4 @@
-package com.example.menmarket.ui.fragment;
+package com.example.menmarket.ui.fragment.userFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
 import com.example.menmarket.data.model.User;
+import com.example.menmarket.ui.fragment.BaseFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,7 +60,7 @@ public class SignUpFragment extends BaseFragment {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (phone.getText().toString().length() < 11 || !pass.getText().toString().equals(pass.getText().toString()) || name.getText().toString().length() < 6 || pass.getText().toString().length() < 8) {
+                if (phone.getText().toString().length() < 11 || !pass.getText().toString().equals(pass.getText().toString()) || name.getText().toString().length() < 5 || pass.getText().toString().length() < 8) {
                     Toast.makeText(getActivity(), "check your inputs", Toast.LENGTH_SHORT).show();
                 } else {
                     database.addValueEventListener(new ValueEventListener() {
@@ -71,14 +72,12 @@ public class SignUpFragment extends BaseFragment {
                                 User user = new User(name.getText().toString(), pass.getText().toString());
                                 database.child(phone.getText().toString()).setValue(user);
                                 Toast.makeText(getActivity(), "Ready to LogIn", Toast.LENGTH_SHORT).show();
-
-
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            Toast.makeText(getActivity(), "check internet connection", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

@@ -1,4 +1,4 @@
-package com.example.menmarket.ui.fragment;
+package com.example.menmarket.ui.fragment.userFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
 import com.example.menmarket.data.model.User;
+import com.example.menmarket.ui.fragment.BaseFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.acivity.UserActivity"></activity>
+        <activity android:name=".ui.acivity.HomeActivity"></activity>
+        <activity android:name=".ui.acivity.UserActivity" />
         <activity android:name=".ui.acivity.SplashcActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,12 +1,10 @@
 package com.example.menmarket.ui.acivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
-import com.example.menmarket.ui.fragment.StartFragment;
+import com.example.menmarket.ui.fragment.userFragment.StartFragment;
 
 public class UserActivity extends BaseActivity {
 

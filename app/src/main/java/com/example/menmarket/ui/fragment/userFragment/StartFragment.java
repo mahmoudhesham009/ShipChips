@@ -1,4 +1,4 @@
-package com.example.menmarket.ui.fragment;
+package com.example.menmarket.ui.fragment.userFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import androidx.annotation.Nullable;
 
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
+import com.example.menmarket.ui.fragment.BaseFragment;
+import com.example.menmarket.ui.fragment.userFragment.LogInFragment;
+import com.example.menmarket.ui.fragment.userFragment.SignUpFragment;
 
 public class StartFragment extends BaseFragment {
     Button logIn;

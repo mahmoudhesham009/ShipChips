@@ -11,4 +11,10 @@ public class Helper {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    static public void replaceFragmentS(FragmentManager fragmentManager, int id, Fragment fragment){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(id, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
