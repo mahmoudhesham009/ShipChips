@@ -60,10 +60,10 @@ public class SignUpFragment extends BaseFragment {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (phone.getText().toString().length() < 11 || !pass.getText().toString().equals(pass.getText().toString()) || name.getText().toString().length() < 5 || pass.getText().toString().length() < 8) {
+                if (phone.getText().toString().length() < 11 || !pass.getText().toString().equals(repass.getText().toString()) || name.getText().toString().length() < 5 || pass.getText().toString().length() < 5) {
                     Toast.makeText(getActivity(), "check your inputs", Toast.LENGTH_SHORT).show();
                 } else {
-                    database.addValueEventListener(new ValueEventListener() {
+                    database.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.child(phone.getText().toString()).exists()) {
@@ -72,6 +72,7 @@ public class SignUpFragment extends BaseFragment {
                                 User user = new User(name.getText().toString(), pass.getText().toString());
                                 database.child(phone.getText().toString()).setValue(user);
                                 Toast.makeText(getActivity(), "Ready to LogIn", Toast.LENGTH_SHORT).show();
+                                onBack();
                             }
                         }
 

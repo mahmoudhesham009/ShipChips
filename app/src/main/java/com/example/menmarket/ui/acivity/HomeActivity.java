@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigation=findViewById(R.id.bottom_navigation);
-        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
+        //Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
 
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,19 +31,19 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new HomeFragment());
                         break;
 
                     case R.id.offer:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new OfferFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new OfferFragment());
                         break;
 
                     case R.id.cart:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new CartFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new CartFragment());
                         break;
 
                     case R.id.ship:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new ShippingFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new ShippingFragment());
                         break;
                 }
                 return true;
