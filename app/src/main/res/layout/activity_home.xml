@@ -6,6 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".ui.acivity.HomeActivity">
 
+    <FrameLayout
+        android:id="@+id/home_fragment_viewer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="#FFF8D2"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_bar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/bottom_navigation_background"
+        app:layout_constraintEnd_toEndOf="@+id/home_fragment_viewer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:background="@drawable/edittext2"
+            android:drawableStart="@drawable/ic_search"
+            android:ems="10"
+            android:hint="Search"
+            android:inputType="textPersonName"
+            android:paddingLeft="@dimen/_7sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -14,17 +57,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation"
-        android:background="#fff"/>
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
+        app:itemTextColor="#FF784C09"/>
 
-    <FrameLayout
-        android:id="@+id/home_fragment_viewer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
