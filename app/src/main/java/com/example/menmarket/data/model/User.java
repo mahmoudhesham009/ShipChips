@@ -13,7 +13,6 @@ public class User {
     }
 
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -21,7 +20,6 @@ public class User {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-
 
 
     public String getName() {
