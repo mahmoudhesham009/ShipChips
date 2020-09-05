@@ -43,7 +43,7 @@ public class ProductRecyclerViewActivity extends AppCompatActivity implements Re
 
         Bundle extras = getIntent().getExtras();
         category=extras.getString("category");
-        
+
 
         categoryTextView=findViewById(R.id.categoryTextView);
         categoryTextView.setText(category.toUpperCase());
