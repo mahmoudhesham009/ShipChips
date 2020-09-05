@@ -7,24 +7,20 @@
     tools:context=".ui.acivity.HomeActivity">
 
     <FrameLayout
-        android:id="@+id/home_fragment_viewe"
+        android:id="@+id/home_fragment_viewer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_50sdp"
-        android:background="#FFF8D2"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/top_bar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:background="@drawable/bottom_navigation_background"
-        app:layout_constraintEnd_toEndOf="@+id/home_fragment_viewer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

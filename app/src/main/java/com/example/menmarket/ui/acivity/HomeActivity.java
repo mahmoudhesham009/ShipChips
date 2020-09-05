@@ -15,7 +15,7 @@ import com.example.menmarket.ui.fragment.homeFragments.ShippingFragment;
 import com.example.menmarket.ui.fragment.userFragment.SignUpFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity{
     BottomNavigationView bottomNavigation;
 
     @Override
@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigation=findViewById(R.id.bottom_navigation);
-        //Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
+        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
 
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,23 +31,28 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new HomeFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
                         break;
 
                     case R.id.offer:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new OfferFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new OfferFragment());
                         break;
 
                     case R.id.cart:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new CartFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new CartFragment());
                         break;
 
                     case R.id.ship:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewe,new ShippingFragment());
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new ShippingFragment());
                         break;
                 }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

@@ -68,6 +68,7 @@ public class LogInFragment extends BaseFragment {
                             if (user.getPassWord().equals(pass.getText().toString())) {
                                 Toast.makeText(getActivity(), "Welcome, " + user.getName(), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(), HomeActivity.class));
+                                getActivity().finish();
                             } else {
                                 Toast.makeText(getActivity(), "check password", Toast.LENGTH_SHORT).show();
                             }

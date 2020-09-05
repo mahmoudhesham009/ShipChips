@@ -1,0 +1,93 @@
+package com.example.menmarket.ui.acivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.menmarket.R;
+import com.example.menmarket.adapter.ProductRecycleViewAdapter;
+import com.example.menmarket.data.model.Product;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class ProductRecyclerViewActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    ProductRecycleViewAdapter productRecycleViewAdapter;
+    ArrayList<Product> productArrayList;
+    RecyclerView.LayoutManager mLayoutManager;
+    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference=firebaseDatabase.getReference("product");
+    String category;
+    TextView categoryTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_product_recycler_view);
+
+        Bundle extras = getIntent().getExtras();
+        category=extras.getString("category");
+
+        categoryTextView=findViewById(R.id.categoryTextView);
+        categoryTextView.setText(category.toUpperCase());
+        productArrayList=new ArrayList<Product>();
+        recyclerView=findViewById(R.id.RecyclerView);
+        productRecycleViewAdapter=new ProductRecycleViewAdapter(productArrayList);
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        getProducts();
+        checkConnectio();
+
+
+    }
+
+    public void getProducts(){
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    if (postSnapshot.getValue(Product.class).getCategory().equals(category))
+                        productArrayList.add(postSnapshot.getValue(Product.class));
+                }
+                recyclerView.setAdapter(productRecycleViewAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
+        });
+    }
+
+    public void checkConnectio(){
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+
+                } else {
+                    Toast.makeText(ProductRecyclerViewActivity.this,"No Internet", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+}
