@@ -7,6 +7,17 @@
     tools:context=".ui.acivity.ProductRecyclerViewActivity"
     android:background="#FFF8D2">
 
+    <ImageView
+        android:id="@+id/noInternetimageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/RecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/RecyclerView"
+        app:layout_constraintTop_toTopOf="@+id/RecyclerView"
+        app:srcCompat="@drawable/ic_signal_wifi_off_black_24dp" />
+
     <TextView
         android:id="@+id/categoryTextView"
         android:layout_width="match_parent"

@@ -20,10 +20,13 @@ import java.util.ArrayList;
 
 public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecycleViewAdapter.ViewHolder> {
     private ArrayList<Product> productArrayList;
+    RecyclerViewClickInterface recyclerViewClickInterface;
     Context context;
 
-    public ProductRecycleViewAdapter(ArrayList<Product> productArrayList) {
+    public ProductRecycleViewAdapter(ArrayList<Product> productArrayList,RecyclerViewClickInterface recyclerViewClickInterface ) {
         this.productArrayList = productArrayList;
+        this.recyclerViewClickInterface = recyclerViewClickInterface;
+
     }
 
     @NonNull
@@ -63,6 +66,13 @@ public class ProductRecycleViewAdapter extends RecyclerView.Adapter<ProductRecyc
             productImageView=itemView.findViewById(R.id.product_image_recycler);
             nameTextView=itemView.findViewById(R.id.product_name_recycler);
             priceTextView=itemView.findViewById(R.id.price_recycler);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recyclerViewClickInterface.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }
