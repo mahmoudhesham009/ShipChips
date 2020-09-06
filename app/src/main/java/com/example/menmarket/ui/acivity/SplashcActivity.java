@@ -2,6 +2,7 @@ package com.example.menmarket.ui.acivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -31,7 +32,10 @@ public class SplashcActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    startActivity(new Intent(getBaseContext(), UserActivity.class));
+                    if (loadData().equals(""))
+                        startActivity(new Intent(getBaseContext(), UserActivity.class));
+                    else
+                        startActivity(new Intent(getBaseContext(), HomeActivity.class));
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,6 +44,10 @@ public class SplashcActivity extends AppCompatActivity {
         }, 3 * 1000);
     }
 
+    public String loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreference", MODE_PRIVATE);
+        return sharedPreferences.getString("userPhone", "");
+    }
     @Override
     public void onBackPressed() {
 

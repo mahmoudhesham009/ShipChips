@@ -1,6 +1,7 @@
 package com.example.menmarket.ui.fragment.userFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class LogInFragment extends BaseFragment {
 
@@ -67,6 +70,7 @@ public class LogInFragment extends BaseFragment {
                             user = snapshot.child(phone.getText().toString()).getValue(User.class);
                             if (user.getPassWord().equals(pass.getText().toString())) {
                                 Toast.makeText(getActivity(), "Welcome, " + user.getName(), Toast.LENGTH_SHORT).show();
+                                saveData();
                                 startActivity(new Intent(getActivity(), HomeActivity.class));
                                 getActivity().finish();
                             } else {
@@ -87,6 +91,16 @@ public class LogInFragment extends BaseFragment {
             }
         });
     }
+
+
+    public void saveData() {
+        SharedPreferences sharedPreferences= getActivity().getSharedPreferences("sharedPreference", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userPhone",phone.getText().toString());
+        editor.apply();
+    }
+
+
 
     @Override
     public void onBack() {

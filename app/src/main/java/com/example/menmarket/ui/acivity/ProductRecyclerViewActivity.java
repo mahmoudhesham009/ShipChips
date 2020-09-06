@@ -46,14 +46,16 @@ public class ProductRecyclerViewActivity extends AppCompatActivity implements Re
 
         categoryTextView=findViewById(R.id.categoryTextView);
         categoryTextView.setText(category.toUpperCase());
+
         productArrayList=new ArrayList<Product>();
         recyclerView=findViewById(R.id.RecyclerView);
         productRecycleViewAdapter=new ProductRecycleViewAdapter(productArrayList,this);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        checkConnection();
         getProducts();
+        checkConnection();
+
 
 
     }
