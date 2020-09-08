@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
@@ -67,24 +69,31 @@ public class RequestDetails extends AppCompatActivity {
         address=addressTextView.getText().toString();
 
         request=new Request(names,num,price,phone,address,null,null);
-
         userphone= loadData();
+
+        checkConnection();
 
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        databaseReference.child(userphone).push().setValue(request);
-                        firebaseDatabase.getReference("cart").child(userphone).removeValue();
-                    }
+                if(phone.trim().length()==11){
+                    order.setClickable(false);
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            databaseReference.child(userphone).push().setValue(request);
+                            firebaseDatabase.getReference("cart").child(userphone).removeValue();
+                            startActivity(new Intent(getBaseContext(),HomeActivity.class));
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }else {
+                    Toast.makeText(RequestDetails.this,"Phone number must contain 11 number",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -93,5 +102,28 @@ public class RequestDetails extends AppCompatActivity {
     public String loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPreference", Context.MODE_PRIVATE);
         return sharedPreferences.getString("userPhone", "");
+    }
+
+    public void checkConnection(){
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    order.setVisibility(View.VISIBLE);
+                    order.setClickable(true);
+
+                } else {
+                    order.setVisibility(View.INVISIBLE);
+                    order.setClickable(false);
+                    Toast.makeText(RequestDetails.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
