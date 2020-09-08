@@ -65,8 +65,7 @@ public class RequestDetails extends AppCompatActivity {
         }
 
         price=getIntent().getStringExtra("price");
-        phone=phoneTextView.getText().toString();
-        address=addressTextView.getText().toString();
+
 
         request=new Request(names,num,price,phone,address,null,null);
         userphone= loadData();
@@ -76,7 +75,9 @@ public class RequestDetails extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(phone.trim().length()==11){
+                phone=phoneTextView.getText().toString();
+                address=addressTextView.getText().toString();
+                if(phone.length()==11){
                     order.setClickable(false);
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
