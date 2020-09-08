@@ -1,6 +1,7 @@
 package com.example.menmarket.ui.fragment.homeFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,16 +21,18 @@ import com.example.menmarket.adapter.CartRecyclerViewAdapter;
 import com.example.menmarket.data.model.CartProduct;
 import com.example.menmarket.data.model.Product;
 import com.example.menmarket.ui.acivity.ProductActivity;
+import com.example.menmarket.ui.acivity.RequestDetails;
 import com.example.menmarket.ui.fragment.BaseFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class CartFragment extends BaseFragment {
+public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     RecyclerView recyclerView;
     CartRecyclerViewAdapter cartRecyclerViewAdapter;
@@ -39,7 +42,7 @@ public class CartFragment extends BaseFragment {
     DatabaseReference databaseReference = firebaseDatabase.getReference("cart");
     TextView totalPrice;
     Button request;
-
+    int price;
     String userPhone;
 
     @Nullable
@@ -62,6 +65,7 @@ public class CartFragment extends BaseFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
+        request.setOnClickListener(this);
         getProducts();
         checkConnection();
         return v;
@@ -87,7 +91,7 @@ public class CartFragment extends BaseFragment {
                     }
                 }
 
-                int price=0;
+                price=0;
                 totalPrice.setVisibility(View.VISIBLE);
                 request.setClickable(true);
                 request.setVisibility(View.VISIBLE);
@@ -136,5 +140,16 @@ public class CartFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        Gson gson = new Gson();
+        Intent intent = new Intent(getActivity(), RequestDetails.class);
+        intent.putExtra("requestProduct", gson.toJson(cartProductArrayList));
+        intent.putExtra("price", String.valueOf(price));
+
+        startActivity(intent);
+        //databaseReference.child(userPhone).removeValue();
     }
 }

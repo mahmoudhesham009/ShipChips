@@ -56,8 +56,6 @@ public class ProductRecyclerViewActivity extends AppCompatActivity implements Re
         getProducts();
         checkConnection();
 
-
-
     }
 
     public void getProducts(){

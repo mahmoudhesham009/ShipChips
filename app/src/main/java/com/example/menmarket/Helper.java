@@ -1,5 +1,8 @@
 package com.example.menmarket;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +19,11 @@ public class Helper {
         transaction.replace(id, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    static public String loadData(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("sharedPreference", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("userPhone", "");
     }
 
 

@@ -11,18 +11,18 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.acivity.ProductActivity"></activity>
+        <activity android:name=".ui.acivity.RequestDetails"></activity>
+        <activity android:name=".ui.acivity.ProductActivity" />
         <activity android:name=".ui.acivity.ProductRecyclerViewActivity" />
-        <activity android:name=".ui.acivity.HomeActivity">
-
-        </activity>
+        <activity android:name=".ui.acivity.HomeActivity"></activity>
         <activity android:name=".ui.acivity.UserActivity" />
         <activity android:name=".ui.acivity.SplashcActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
