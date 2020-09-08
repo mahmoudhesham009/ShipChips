@@ -30,8 +30,8 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
     ProductRecycleViewAdapter productRecycleViewAdapter;
     ArrayList<Product> productArrayList;
     RecyclerView.LayoutManager mLayoutManager;
-    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference=firebaseDatabase.getReference("product");
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference("product");
     TextView categoryTextView;
 
     @Override
@@ -39,14 +39,14 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_recycler_view);
 
-        searchKey=getIntent().getExtras().getString("searchKey");
+        searchKey = getIntent().getExtras().getString("searchKey");
 
-        categoryTextView=findViewById(R.id.categoryTextView);
+        categoryTextView = findViewById(R.id.categoryTextView);
         categoryTextView.setText("RESULT");
 
-        productArrayList=new ArrayList<Product>();
-        recyclerView=findViewById(R.id.RecyclerView);
-        productRecycleViewAdapter=new ProductRecycleViewAdapter(productArrayList,this);
+        productArrayList = new ArrayList<Product>();
+        recyclerView = findViewById(R.id.RecyclerView);
+        productRecycleViewAdapter = new ProductRecycleViewAdapter(productArrayList, this);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -58,7 +58,7 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
     @Override
     protected void onResume() {
         super.onResume();
-        searchKey=getIntent().getExtras().getString("searchKey");
+        searchKey = getIntent().getExtras().getString("searchKey");
     }
 
 
@@ -66,7 +66,7 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     if (postSnapshot.getValue(Product.class).getName().toUpperCase().contains(searchKey.toUpperCase()))
                         productArrayList.add(postSnapshot.getValue(Product.class));
                 }
@@ -81,7 +81,7 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
         });
     }
 
-    public void checkConnection(){
+    public void checkConnection() {
         DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
         connectedRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -92,10 +92,10 @@ public class SearchProductRecyclerViewActivity extends AppCompatActivity impleme
 
 
                 } else {
-                    if (productArrayList.size()==0)
+                    if (productArrayList.size() == 0)
                         findViewById(R.id.noInternetimageView).setVisibility(View.VISIBLE);
 
-                    Toast.makeText(SearchProductRecyclerViewActivity.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchProductRecyclerViewActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
 
