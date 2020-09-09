@@ -46,12 +46,12 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter <OrdersRecyc
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         holder.date.setText(requestArrayList.get(position).getOrderTime());
-        String orderDes=null;
+        String orderDes="";
         for (int i=0 ; i<requestArrayList.get(position).getNames().size();i++){
-            orderDes=orderDes+requestArrayList.get(position).getNum().get(i)+requestArrayList.get(position).getNames().get(i)+"\n";
+            orderDes=orderDes+requestArrayList.get(position).getNum().get(i)+" * "+requestArrayList.get(position).getNames().get(i)+"\n";
         }
-        holder.date.setText(orderDes);
-        holder.price.setText(requestArrayList.get(position).getTotalPrice());
+        holder.order.setText(orderDes);
+        holder.price.setText(requestArrayList.get(position).getTotalPrice()+" EGP");
 
     }
 
