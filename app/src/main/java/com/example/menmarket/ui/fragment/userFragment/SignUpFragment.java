@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
 import com.example.menmarket.data.model.User;
+import com.example.menmarket.ui.acivity.SearchProductRecyclerViewActivity;
 import com.example.menmarket.ui.fragment.BaseFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,6 +51,7 @@ public class SignUpFragment extends BaseFragment {
                 onBack();
             }
         });
+        checkConnection();
         return v;
     }
 
@@ -82,6 +84,30 @@ public class SignUpFragment extends BaseFragment {
                         }
                     });
                 }
+            }
+        });
+    }
+
+    public void checkConnection() {
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    signUp.setClickable(true);
+                    signUp.setVisibility(View.VISIBLE);
+
+
+                } else {
+                    signUp.setClickable(false);
+                    signUp.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }

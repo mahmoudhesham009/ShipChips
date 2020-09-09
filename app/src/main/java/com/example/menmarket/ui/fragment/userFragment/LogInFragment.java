@@ -52,6 +52,7 @@ public class LogInFragment extends BaseFragment {
                 onBack();
             }
         });
+        checkConnection();
         return v;
     }
 
@@ -100,7 +101,29 @@ public class LogInFragment extends BaseFragment {
         editor.apply();
     }
 
+    public void checkConnection() {
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    logIn.setClickable(true);
+                    logIn.setVisibility(View.VISIBLE);
 
+
+                } else {
+                    logIn.setClickable(false);
+                    logIn.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     @Override
     public void onBack() {

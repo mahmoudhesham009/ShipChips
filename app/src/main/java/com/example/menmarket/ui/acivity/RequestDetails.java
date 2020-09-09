@@ -25,8 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class RequestDetails extends AppCompatActivity {
     ArrayList<CartProduct> cartProduct=new ArrayList<>();
@@ -67,7 +70,6 @@ public class RequestDetails extends AppCompatActivity {
         price=getIntent().getStringExtra("price");
 
 
-        request=new Request(names,num,price,phone,address,null,null);
         userphone= loadData();
 
         checkConnection();
@@ -77,6 +79,7 @@ public class RequestDetails extends AppCompatActivity {
             public void onClick(View v) {
                 phone=phoneTextView.getText().toString();
                 address=addressTextView.getText().toString();
+                request=new Request(names,num,price,phone,address,null,null,new SimpleDateFormat("EEE, d MMM yyyy, HH:mm", Locale.ENGLISH).format(Calendar.getInstance().getTime()));
                 if(phone.length()==11){
                     order.setClickable(false);
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,6 +88,7 @@ public class RequestDetails extends AppCompatActivity {
                             databaseReference.child(userphone).push().setValue(request);
                             firebaseDatabase.getReference("cart").child(userphone).removeValue();
                             startActivity(new Intent(getBaseContext(),HomeActivity.class));
+                            finish();
                         }
 
                         @Override

@@ -4,20 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.menmarket.Helper;
 import com.example.menmarket.R;
 import com.example.menmarket.ui.fragment.homeFragments.CartFragment;
 import com.example.menmarket.ui.fragment.homeFragments.HomeFragment;
-import com.example.menmarket.ui.fragment.homeFragments.OfferFragment;
-import com.example.menmarket.ui.fragment.homeFragments.ShippingFragment;
-import com.example.menmarket.ui.fragment.userFragment.SignUpFragment;
+import com.example.menmarket.ui.fragment.homeFragments.SettingFragment;
+import com.example.menmarket.ui.fragment.homeFragments.OrdersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends BaseActivity{
@@ -54,16 +51,16 @@ public class HomeActivity extends BaseActivity{
                         Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new HomeFragment());
                         break;
 
-                    case R.id.offer:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new OfferFragment());
+                    case R.id.setting:
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new SettingFragment());
                         break;
 
                     case R.id.cart:
                         Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new CartFragment());
                         break;
 
-                    case R.id.ship:
-                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new ShippingFragment());
+                    case R.id.orders:
+                        Helper.replaceFragmentS(getSupportFragmentManager(),R.id.home_fragment_viewer,new OrdersFragment());
                         break;
                 }
                 return true;

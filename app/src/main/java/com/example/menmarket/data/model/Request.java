@@ -9,11 +9,12 @@ public class Request {
     String phone;
     String address;
     String longitude, latitude;
+    String orderTime;
 
     public Request() {
     }
 
-    public Request(ArrayList<String> names, ArrayList<String> num, String totalPrice, String phone, String address, String longitude, String latitude) {
+    public Request(ArrayList<String> names, ArrayList<String> num, String totalPrice, String phone, String address, String longitude, String latitude,String orderTime) {
         this.names = names;
         this.num = num;
         this.totalPrice = totalPrice;
@@ -21,6 +22,7 @@ public class Request {
         this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.orderTime=orderTime;
     }
 
     public ArrayList<String> getNames() {
@@ -79,5 +81,11 @@ public class Request {
         this.latitude = latitude;
     }
 
+    public String getOrderTime() {
+        return orderTime;
+    }
 
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
 }

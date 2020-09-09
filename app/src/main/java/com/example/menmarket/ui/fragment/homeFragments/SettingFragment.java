@@ -11,12 +11,12 @@ import androidx.annotation.Nullable;
 import com.example.menmarket.R;
 import com.example.menmarket.ui.fragment.BaseFragment;
 
-public class ShippingFragment extends BaseFragment {
+public class SettingFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inif();
-        View v=inflater.inflate(R.layout.fragment_shipping,container,false);
+        View v=inflater.inflate(R.layout.fragment_setting,container,false);
         return v;
     }
 }
