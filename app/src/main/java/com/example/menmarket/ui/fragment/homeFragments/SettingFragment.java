@@ -32,7 +32,6 @@ public class SettingFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), UserActivity.class));
                 saveData();
                 getActivity().finish();
-
             }
         });
 
