@@ -1,5 +1,7 @@
 package com.example.menmarket.ui.fragment.homeFragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ public class OrdersFragment extends BaseFragment {
     RecyclerView.LayoutManager mLayoutManager;
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     DatabaseReference databaseReference=firebaseDatabase.getReference("orders");
+    String userPhone;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class OrdersFragment extends BaseFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
+        userPhone=loadData();
+
         getProducts();
         checkConnection();
 
@@ -51,13 +56,12 @@ public class OrdersFragment extends BaseFragment {
     }
 
     public void getProducts(){
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(userPhone).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     requestArrayList.add(postSnapshot.getValue(Request.class));
                 }
-                ordersRecyclerViewAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(ordersRecyclerViewAdapter);
             }
 
@@ -86,5 +90,10 @@ public class OrdersFragment extends BaseFragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    public String loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPreference", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("userPhone", "");
     }
 }
